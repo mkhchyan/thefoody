@@ -7,22 +7,23 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp -r public && cp -r .next/static",
+    "build": "next build",
     "start": "next start",
     "ts": "tsc --noEmit",
     "lint": "next lint",
     "generate:favicon": "node scripts/generateFavicon.js"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "1.6.0",
     "@hookform/resolvers": "5.2.2",
-    "@prisma/client": "5.22.0",
+    "@prisma/client": "6.0.0",
     "@reduxjs/toolkit": "2.11.2",
+    "@tanstack/react-query": "5.90.17",
     "bcryptjs": "3.0.3",
     "date-fns": "4.1.0",
     "lucide-react": "0.562.0",
     "next": "16.1.1",
     "next-auth": "4.24.13",
-    "prisma": "5.22.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "7.71.0",
@@ -35,15 +36,19 @@
     "@types/node": "20",
     "@types/react": "19",
     "@types/react-dom": "19",
-    "autoprefixer": "^10.4.23",
-    "cli-real-favicon": "^0.0.9",
+    "autoprefixer": "10.4.23",
+    "cli-real-favicon": "0.0.9",
     "eslint": "9",
     "eslint-config-next": "16.1.1",
-    "eslint-plugin-check-file": "^3.3.1",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-check-file": "3.3.1",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-prettier": "5.5.4",
+    "prisma": "6.0.0",
     "tailwindcss": "4",
     "typescript": "5"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "peerDependencies": {
     "react": ">=19"

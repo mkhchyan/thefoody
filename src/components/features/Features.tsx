@@ -1,6 +1,7 @@
 import { MapPin, Star } from "lucide-react";
 import Link from "next/link";
 import { featuredRestaurants } from "./data";
+import Image from "next/image";
 
 function Features() {
   return (
@@ -30,9 +31,12 @@ function Features() {
               className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
-                <img
+                <Image
                   src={restaurant.image}
                   alt={restaurant.name}
+                  width={400}
+                  height={300}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-700">

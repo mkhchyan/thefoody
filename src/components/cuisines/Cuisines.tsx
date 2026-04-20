@@ -3,7 +3,7 @@ import { cuisines } from "./data";
 
 function Cuisines() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -23,11 +23,11 @@ function Cuisines() {
             >
               <div
                 className={
-                  "w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform " +
+                  "size-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform" +
                   cuisine.color
                 }
               >
-                <cuisine.icon className="w-8 h-8" />
+                <cuisine.icon className="size-8" />
               </div>
               <span className="font-semibold text-gray-800">
                 {cuisine.name}

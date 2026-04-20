@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth"
 import { z } from "zod"
 import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
+import { Role } from "@prisma/client"
 
 const updateBookingSchema = z.object({
     tableId: z.string().optional().nullable(),
@@ -63,7 +64,6 @@ export async function GET(
             )
         }
 
-        // Users can only view their own bookings, admins can view all
         if (session.user.role !== "ADMIN" && booking.userId !== session.user.id) {
             return NextResponse.json(
                 { error: "Forbidden" },
@@ -98,7 +98,7 @@ export async function PUT(
         const validationResult = updateBookingSchema.safeParse(body)
         if (!validationResult.success) {
             return NextResponse.json(
-                { error: "Validation failed", details: validationResult.error.flatten() },
+                { error: "Validation failed", details: z.treeifyError(validationResult.error) },
                 { status: 400 }
             )
         }
@@ -227,7 +227,7 @@ export async function DELETE(
             )
         }
 
-        const isAdmin = session.user.role === "ADMIN"
+        const isAdmin = session.user.role === Role.ADMIN
         const isOwner = existingBooking.userId === session.user.id
 
         if (!isAdmin && !isOwner) {
@@ -237,7 +237,6 @@ export async function DELETE(
             )
         }
 
-        // Soft delete by setting status to cancelled
         await prisma.booking.update({
             where: { id },
             data: { status: "cancelled" },
